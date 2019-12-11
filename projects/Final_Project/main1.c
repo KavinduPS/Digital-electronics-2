@@ -38,18 +38,19 @@
 int main(void)
 {
     // LCD display
-    lcd_init(LCD_DISP_ON);
+    //lcd_init(LCD_DISP_ON);
 
     /* ADC
      * TODO: Configure ADC reference, clock source, enable ADC module, 
      *       and enable conversion complete interrupt */
-        ADMUX |=  _BV(REFS0);
-        ADMUX &= ~_BV(REFS1);
-
-        ADMUX &= ~_BV(MUX0);
+        //ADMUX |=  _BV(REFS0); //0b0100 0000 = 40
+        //ADMUX &= ~_BV(REFS1); //0b0100 0001 = 41
+                                //0b0100 0010 = 42
+                                //0b0100 0010 = 43
+       /* ADMUX &= ~_BV(MUX0);
         ADMUX &= ~_BV(MUX1);
         ADMUX &= ~_BV(MUX2);
-        ADMUX &= ~_BV(MUX3);
+        ADMUX &= ~_BV(MUX3);*/
 
         ADCSRA |= _BV(ADPS0);
         ADCSRA |= _BV(ADPS1);
@@ -198,7 +199,26 @@ void Luxmeter(void)
 
 ISR(ADC_vect)
 {
-    void Voltmeter(void);
+    switch (ADMUX)
+    {
+        case 40:
+        void Voltmeter();
+        ADMUX = 41;
+        break;
+        case 41:
+        void Ammeter();
+        ADMUX = 42;
+        break;
+        case 42:
+        void Ohmmeter();
+        ADMUX = 42;
+        break;
+        case 43:
+        void Luxmeter();
+        ADMUX = 40;
+        break;
+    }
+  //  void Voltmeter(void);
   /* uint16_t V_out = 0;
     uint16_t V_in ;
     uint16_t R1 = 50000;
