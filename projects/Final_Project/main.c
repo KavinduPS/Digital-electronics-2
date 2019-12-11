@@ -118,7 +118,8 @@ void Voltmeter(void)
     // TODO: Update LCD and UART transmiter
        
     uart_puts("Voltage = ");
-    itoa(V_in, uart_string, 10);
+    dtostrf(V_in, 5, 3, uart_string);
+    //itoa(V_in, uart_string, 10);
     uart_puts(uart_string); 
     uart_puts("V");
 }
@@ -141,7 +142,8 @@ void Ammeter(void)
     // TODO: Update LCD and UART transmiter
        
     uart_puts("Current = ");
-    itoa(I_in, uart_string, 10);
+    dtostrf(I_in, 5, 3, uart_string);
+    //itoa(I_in, uart_string, 10);
     uart_puts(uart_string); 
     uart_puts("A");
 }
@@ -190,7 +192,8 @@ void Luxmeter(void)
     // TODO: Update LCD and UART transmiter
        
     uart_puts("Light Intensity = ");
-    itoa(lux, uart_string, 10);  
+    dtostrf(lux, 5, 3, uart_string);
+    //itoa(lux, uart_string, 10);  
     uart_puts(uart_string); 
     uart_puts("Lux");
 }
