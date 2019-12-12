@@ -38,7 +38,7 @@
 int main(void)
 {
     // LCD display
-    lcd_init(LCD_DISP_ON);
+    //lcd_init(LCD_DISP_ON);
 
     /* ADC
      * TODO: Configure ADC reference, clock source, enable ADC module, 
@@ -103,10 +103,10 @@ ISR(TIMER1_OVF_vect)
 //Voltmeter
 void Voltmeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t V_in ;
-    uint16_t R1 = 50000;
-    uint16_t R2 = 10000;
+    float V_out = 0;
+    float V_in ;
+    float R1 = 50000;
+    float R2 = 10000;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
@@ -127,10 +127,10 @@ void Voltmeter(void)
 //Amperemeter
 void Ammeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t I_in;
-    uint16_t V_nominal = 2.5;
-    uint16_t constant = 0.185;
+    float V_out = 0;
+    float I_in;
+    float V_nominal = 2.5;
+    float constant = 0.185;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
@@ -151,10 +151,10 @@ void Ammeter(void)
 //Ohmmeter
 void Ohmmeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t V_in = 5;
-    uint16_t R1 = 10000;
-    uint16_t R2;
+    float V_out = 0;
+    float V_in = 5;
+    float R1 = 10000;
+    float R2;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
@@ -175,11 +175,11 @@ void Ohmmeter(void)
 //Luxmeter
 void Luxmeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t V_in = 5;
-    uint16_t R1 = 10000;
-    uint16_t ldr;
-    uint16_t lux;
+    float V_out = 0;
+    float V_in = 5;
+    float R1 = 10000;
+    float ldr;
+    float lux;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
@@ -202,22 +202,23 @@ void Luxmeter(void)
 ISR(ADC_vect)
 {
     void Voltmeter(void);
-  /* uint16_t V_out = 0;
-    uint16_t V_in ;
-    uint16_t R1 = 50000;
-    uint16_t R2 = 10000;
+    /*float V_out = 0;
+    float V_in = 5;
+    float R1 = 10000;
+    float R2;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
      V_out = ADC*0.004888;
 
     // Calculating the input voltage
-     V_in = (V_out*(R1+R2))/R2;
+     R2 = (R1*V_out)/(V_in-V_out);
 
     // TODO: Update LCD and UART transmiter
        
-    uart_puts("Voltage = ")
-    itoa(V_in, uart_string, 10);
+    uart_puts("Resistance = ");
+    dtostrf(R2, 5, 3, uart_string);
+    //itoa(R2, uart_string, 10);  
     uart_puts(uart_string); 
-    uart1_puts("V");*/
+    uart_puts("Ohms");*/
 }

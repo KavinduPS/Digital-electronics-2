@@ -104,10 +104,10 @@ ISR(TIMER1_OVF_vect)
 //Voltmeter
 void Voltmeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t V_in ;
-    uint16_t R1 = 50000;
-    uint16_t R2 = 10000;
+    float V_out = 0;
+    float V_in ;
+    float R1 = 50000;
+    float R2 = 10000;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
@@ -128,10 +128,10 @@ void Voltmeter(void)
 //Amperemeter
 void Ammeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t I_in;
-    uint16_t V_nominal = 2.5;
-    uint16_t constant = 0.185;
+    float V_out = 0;
+    float I_in;
+    float V_nominal = 2.5;
+    float constant = 0.185;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
@@ -152,10 +152,10 @@ void Ammeter(void)
 //Ohmmeter
 void Ohmmeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t V_in = 5;
-    uint16_t R1 = 10000;
-    uint16_t R2;
+    float V_out = 0;
+    float V_in = 5;
+    float R1 = 10000;
+    float R2;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
@@ -176,11 +176,11 @@ void Ohmmeter(void)
 //Luxmeter
 void Luxmeter(void)
 {
-    uint16_t V_out = 0;
-    uint16_t V_in = 5;
-    uint16_t R1 = 10000;
-    uint16_t ldr;
-    uint16_t lux;
+    float V_out = 0;
+    float V_in = 5;
+    float R1 = 10000;
+    float ldr;
+    float lux;
     char uart_string[4];
 
 	// Read 10-bit ACD value and converting it to voltage (ADC*5/1023)
